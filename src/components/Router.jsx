@@ -1,6 +1,6 @@
 import {Route, Routes, Navigate} from "react-router-dom";
-import Home from "../pages/home";
-import LogIn from "../pages/login";
+import HomePage from "../pages/home";
+import LogInPage from "../pages/login";
 import SignUp from "../pages/signup";
 import MyPage from "../pages/mypage";
 import Category from "../pages/category";
@@ -15,10 +15,10 @@ export default function Router() {
   return (
     <>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LogIn />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LogInPage />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/mypage/:id" element={<MyPage />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/:category" element={<Category />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />

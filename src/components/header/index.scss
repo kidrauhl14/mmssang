@@ -1,0 +1,65 @@
+@import '../../index.scss';
+
+.header {
+    display: flex;
+    width: 100%;
+    background-color: $soft-gray;
+    color: black;
+    padding: 10px;
+
+    // @media (min-width: 1200px) {
+    //     max-width: 1140px;
+    //     margin-right: auto;
+    //     margin-left: auto;
+    // }
+
+    h1 {
+        font-size: 40px;
+    }
+    
+    .categories {
+        background-color: yellowgreen;
+        display: flex; 
+
+        @media (min-width: 768px) {
+            display: flex;
+            flex: 1;
+        }
+
+        margin: 1.8rem;
+        padding-top: 1.2rem;
+
+        .category {
+            font-size: 1.2rem;
+            margin-right: 2rem;
+        }
+
+    }
+
+    .icons{
+        background-color: pink;
+        display: flex;
+        align-items: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin: 1.8rem;
+
+        .dropdown{
+            background-color: $soft-gray;
+            .search{
+                height: 1.7rem;
+                margin-right: 1rem;
+                // position: fixed;
+                opacity: 50%;
+                width: 100%;
+                color: #333;
+                border-radius: 0;
+                transition: all;
+            }
+        }
+
+        a{
+            margin-right: 0.5rem;
+        }
+    }
+}
