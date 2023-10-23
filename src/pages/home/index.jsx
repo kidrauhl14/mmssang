@@ -1,7 +1,8 @@
 import React from 'react'
+import { EmblaCarousel } from '../../components/carousel'
 
 export default function HomePage() {
   return (
-    <div>메인페이지다</div>
+    <EmblaCarousel />
   )
 }
