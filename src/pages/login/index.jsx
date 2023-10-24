@@ -1,12 +1,8 @@
 import React from 'react'
-import Header from '../../components/header/index';
-// import Footer from '../../components/footer';
-// import LoginForm from '../../components/loginform'
+import LoginForm from '../../components/loginform/index';
 
-export default function LogInPage() {
+export default function LoginPage() {
   return (
-    <>
-    </>
-    
+    <LoginForm />
   )
 }

@@ -1,7 +1,7 @@
 import {Route, Routes, Navigate} from "react-router-dom";
 import HomePage from "../pages/home";
-import LogInPage from "../pages/login";
-import SignUp from "../pages/signup";
+import LoginPage from "../pages/login";
+import SignupPage from "../pages/signup";
 import MyPage from "../pages/mypage";
 import Category from "../pages/category";
 import Product from "../pages/product";
@@ -16,8 +16,8 @@ export default function Router() {
     <>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LogInPage />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/:category" element={<Category />} />
           <Route path="/product/:id" element={<Product />} />
