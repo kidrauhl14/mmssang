@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 import {Route, Routes, Navigate} from "react-router-dom";
 import HomePage from "../pages/home";
 import LoginPage from "../pages/login";
@@ -12,22 +14,40 @@ import CsBoardDetail from "../pages/csboard_detail";
 import CsBoardWrite from "../pages/csboard_write";
 
 export default function Router() {
+  // firebase Auth가 인증되었으면, true로 변경해주는 로직 추가
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/:category" element={<Category />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/scrap" element={<Scrap />} />
-          <Route path="/csboard" element={<CsBoard />} />
-          <Route path="/csboard/:id" element={<CsBoardDetail />} />
-          <Route path="/csboard/new" element={<CsBoardWrite />} />
-          <Route path="*" element={<Navigate replace to="/" />} />
-        </Routes>
+      <Routes>
+        {isAuthenticated ? (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/:category" element={<Category />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/scrap" element={<Scrap />} />
+            <Route path="/csboard" element={<CsBoard />} />
+            <Route path="/csboard/:id" element={<CsBoardDetail />} />
+            <Route path="/csboard/new" element={<CsBoardWrite />} />
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/:category" element={<Category />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/csboard" element={<CsBoard />} />
+            <Route path="/csboard/:id" element={<CsBoardDetail />} />
+            <Route path="*" element={<LoginPage />} />
+          </>
+        )}
+      </Routes>
     </>
   );
 }
