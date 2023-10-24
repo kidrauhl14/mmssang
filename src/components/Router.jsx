@@ -13,9 +13,7 @@ import CsBoard from "../pages/csboard";
 import CsBoardDetail from "../pages/csboard_detail";
 import CsBoardWrite from "../pages/csboard_write";
 
-export default function Router() {
-  // firebase Auth가 인증되었으면, true로 변경해주는 로직 추가
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export default function Router(isAuthenticated) {
 
   return (
     <>
