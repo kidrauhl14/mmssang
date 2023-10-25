@@ -1,6 +1,8 @@
 import {useState} from "react";
 import { app } from "./firebaseApp";
 import { getAuth } from "firebase/auth";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "./components/Layout";
 import Router from "./components/Router";
@@ -19,6 +21,7 @@ function App() {
   return (
     <>
       <Layout>
+        <ToastContainer />
         <Router isAuthenticated={isAuthenticated} />
       </Layout>
     </>

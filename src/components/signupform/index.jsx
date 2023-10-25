@@ -3,6 +3,7 @@ import { useState } from "react";
 import {Link} from "react-router-dom"
 import {app} from "../../firebaseApp";
 import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {toast} from 'react-toastify';
 import './index.scss'
 
 export default function SignupForm() {
@@ -16,8 +17,13 @@ export default function SignupForm() {
     try{
       const auth = getAuth(app);
       await createUserWithEmailAndPassword(auth, email, password);
+
+      // toast 객체에는 success, error, warning, info 등 다양한 메서드가 포함되어 있어서 각각 다른 유형의 알림을 보여줄 수 있음
+      toast.success("회원가입 성공!");
     } catch(error){
       console.log(error);
+      toast.error("회원가입 실패");
+      toast.error(error.code);
     }
   };
   
