@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 import {Link} from "react-router-dom"
+import {app} from "../../firebaseApp";
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import './index.scss'
 
 export default function SignupForm() {
@@ -8,6 +10,16 @@ export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const auth = getAuth(app);
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch(error){
+      console.log(error);
+    }
+  };
   
   const onChange = (e) => {
     const {
@@ -58,7 +70,7 @@ export default function SignupForm() {
 
   return (
     <div className="signupWrapper">
-      <form action="/post" method="POST" className="form form--lg">
+      <form onSubmit={onSubmit} className="form form--lg">
         <h1 className="form__title"> 회원가입</h1>
         <div className="form__block">
           <input
