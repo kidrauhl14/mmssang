@@ -32,6 +32,7 @@
         }
 
         .form__block{
+            background-color: aqua;
             margin-top: 20px;
             width: 100%;
         }
@@ -80,6 +81,10 @@
 
         .form__link:hover, .form__link:focus {
             color: black;  
+        }
+
+        .form__error {
+            color: red;
         }
     }    
 }
