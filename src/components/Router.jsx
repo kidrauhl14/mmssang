@@ -21,8 +21,6 @@ export default function Router(isAuthenticated) {
         {isAuthenticated ? (
           <>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/:category" element={<Category />} />
             <Route path="/product/:id" element={<Product />} />
@@ -32,6 +30,12 @@ export default function Router(isAuthenticated) {
             <Route path="/csboard/:id" element={<CsBoardDetail />} />
             <Route path="/csboard/new" element={<CsBoardWrite />} />
             <Route path="*" element={<Navigate replace to="/" />} />
+
+            {/*isAuthenticated값이 true이면, LoginPage와 SignupPage는 안보여야 함*/}
+            {/*근데 이 로직에 문제가 있는지, 해결이 안돼서 우선은 보이게 해놨음. */}
+            {/*해결 시, 아래 2개의 경로는 지우면 됩니다. */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
           </>
         ) : (
           <>
