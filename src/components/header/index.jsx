@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
-import { useContext } from 'react';
 
 import AuthContext from '../../context/AuthContext';
-
 import { getAuth, signOut } from 'firebase/auth';
 import {app} from "../../firebaseApp";
+import { useContext } from "react";
 
 import {BsCartCheck} from 'react-icons/bs'
 import { CgProfile } from "react-icons/cg"
@@ -13,23 +12,23 @@ import '../header/index.scss'
 import DarkImg from "../../assets/dark.png"
 import { toast } from 'react-toastify';
 
+  const onSignout = async () => {
+    try {
+      const auth = getAuth(app);
+      await signOut(auth);
+      toast.success("로그아웃 성공!");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.code);
+    }
+  };
+
 export default function Header() {
 
-  const auth = getAuth(app);
-  console.log(auth);
+  const {user} = useContext(AuthContext);
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const onSignout = async () => {
-              try {
-                const auth = getAuth(app);
-                await signOut(auth);
-                toast.success("로그아웃 성공!");
-              } catch (error){
-                console.log(error);
-                toast.error(error.code);
-              }
-            }
   // const handleDark = () => {
 
   // };
@@ -65,7 +64,7 @@ export default function Header() {
             <CgProfile />
           </div>
         </Link>
-        {isAuthenticated ? (
+        {user ? (
           <>
             <div className="profile__email">
               {user.email}님, 안녕하세요!

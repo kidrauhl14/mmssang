@@ -13,7 +13,9 @@ import CsBoard from "../pages/csboard";
 import CsBoardDetail from "../pages/csboard_detail";
 import CsBoardWrite from "../pages/csboard_write";
 
-export default function Router(isAuthenticated) {
+export default function Router({user}) {
+
+  const isAuthenticated = !!user; //사용자가 있는 경우에만 인증된 것으로 간주
 
   return (
     <>
@@ -47,6 +49,7 @@ export default function Router(isAuthenticated) {
             <Route path="/csboard" element={<CsBoard />} />
             <Route path="/csboard/:id" element={<CsBoardDetail />} />
             <Route path="*" element={<LoginPage />} />
+            
           </>
         )}
       </Routes>
