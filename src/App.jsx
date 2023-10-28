@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { app } from "./firebaseApp";
+import { app, db } from "./firebaseApp";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +8,8 @@ import Layout from "./components/Layout";
 import Router from "./components/Router";
 
 function App() {
+  console.log(db);
+  
   const auth = getAuth(app);
   console.log(auth);
 
