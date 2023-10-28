@@ -11,7 +11,7 @@ export default function HomePage() {
       <div>
         {categories.map((category) => (
           <section key={category} className="category">
-            <h1 className="category__title">{category}</h1>
+            <h1 className="category__title link">{category}</h1>
             <div className="category__product"></div>
           </section>
         ))}

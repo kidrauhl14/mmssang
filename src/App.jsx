@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Layout from "./components/Layout";
 import Router from "./components/Router";
 
-
 function App() {
   const auth = getAuth(app);
   console.log(auth);

@@ -22,7 +22,7 @@ export default function Router(isAuthenticated) {
           <>
             <Route path="/" element={<HomePage />} />
             <Route path="/mypage" element={<MyPage />} />
-            <Route path="/:category" element={<Category />} />
+            <Route path="/category" element={<Category />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/scrap" element={<Scrap />} />

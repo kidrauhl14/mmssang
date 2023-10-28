@@ -13,6 +13,18 @@
     //     margin-left: auto;
     // }
 
+    .link{
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;  // 부드러운 전환을 위해
+    }
+
+    .link:hover{
+        background-color: $gray;
+        border-radius: 1rem;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
     h1 {
         font-size: 40px;
     }
@@ -20,10 +32,11 @@
     .categories {
         background-color: yellowgreen;
         display: flex; 
+        flex: 0.7;
 
         @media (min-width: 768px) {
             display: flex;
-            flex: 1;
+            flex: 0.7;
         }
 
         margin: 1.8rem;
@@ -42,10 +55,12 @@
         align-items: center;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
-        margin: 1.8rem;
+        margin: 1.5rem;
 
         .dropdown{
             background-color: $soft-gray;
+            margin-right: 1.5rem;
+
             .search{
                 height: 1.7rem;
                 margin-right: 1rem;
@@ -58,8 +73,19 @@
             }
         }
 
+        .signout{
+            color: gray;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .signout:hover, .signout:focus{
+            color: black;
+        }
+
         a{
-            margin-right: 0.5rem;
+            margin-right: 0.8rem;
         }
     }
 }
