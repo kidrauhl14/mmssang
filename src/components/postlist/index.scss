@@ -1,0 +1,86 @@
+@import '../../index.scss';
+
+.post__list {
+    min-height: 90vh;
+    padding: 20px;
+    text-align: left;
+    max-width: 680px;
+    margin: 0;
+    line-height: 24px;
+
+    .post__title-box {
+        display: flex;
+        justify-content: space-between;
+
+        .post__category {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 20px;
+            font-weight: 700; 
+            text-align: left;
+        }
+
+        .post__category-write {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 20px;
+            font-weight: 700; 
+            text-align: right;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .post__box {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        border-top: 1px solid $gray;
+    }
+
+    .post__profile-box {
+        display: flex;
+        gap: 8px;
+        font-size: 14px;
+        align-items: center;
+
+        .post__profile {
+            width: 36px;
+            height: 36px;
+            background: $gray;
+            border-radius: 50%;
+        }
+
+        .post__date, .post__user-name {
+            color: gray;
+        }
+    }
+    .post__title {
+        margin-top: 1rem;
+        font-size: 20px;
+        font-weight: 700; 
+    }
+
+    .post__text {
+        color: gray;
+        font-size: 16px;
+    }
+
+    .post__utils-box {
+        display: flex;
+        gap: 8px;
+        flex-direction: row-reverse;
+        font-size: 14px;
+        color: gray;
+
+        .post__delete:hover, .post__delete:focus {
+            color: black;
+        }
+
+        .post__edit:hover, .post__edit:focus {
+            color: black;
+        }
+    }
+}
