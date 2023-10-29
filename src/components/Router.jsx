@@ -49,7 +49,8 @@ export default function Router({user}) {
             <Route path="/csboard" element={<CsBoard />} />
             <Route path="/csboard/:id" element={<CsBoardDetail />} />
             <Route path="*" element={<LoginPage />} />
-            
+
+            <Route path="/csboard/new" element={<CsBoardWrite />} />
           </>
         )}
       </Routes>

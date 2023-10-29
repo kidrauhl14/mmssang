@@ -21,7 +21,7 @@ export default function CsBoardWrite() {
       // Firestore로 데이터 생성
       await addDoc(collection(db, "posts"), {
         title: title,
-        content: content.at,
+        content: content,
         createAt: new Date()?.toLocaleDateString(),
         email: user.email,
       });
