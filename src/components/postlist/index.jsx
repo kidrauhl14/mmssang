@@ -45,7 +45,7 @@ export default function PostList() {
               </div>
               <div className="post__title">{post.title}</div>
               <div className="post__text">{post.content}</div>
-              {post.email === user.email && (
+              {user && (post.email === user.email) && (
                 <div className="post__utils-box">
                   <div className="post__delete">삭제</div>
                   <div className="post__edit">수정</div>

@@ -50,7 +50,7 @@ export default function Router({user}) {
             <Route path="/csboard/:id" element={<CsBoardDetail />} />
             <Route path="*" element={<LoginPage />} />
 
-            <Route path="/csboard/new" element={<CsBoardWrite />} />
+            {/* <Route path="/csboard/new" element={<CsBoardWrite />} /> */}
           </>
         )}
       </Routes>
