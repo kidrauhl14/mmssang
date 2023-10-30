@@ -31,23 +31,27 @@ export default function PostList() {
           <div className="post__category-write">글쓰기</div>
         </Link>
       </div>
-      {posts.length > 0 ? posts.map((post, index) => (
-        <div key={index} className="post__box">
-          <Link to={`/csboard/${post.id}`}>
-            <div className="post__profile-box">
-              <div className="post__profile" />
-              <div className="post__user-name">{post.email}</div>
-              <div className="post__date">{post.createdAt}</div>
-            </div>
-            <div className="post__title">{post.title}</div>
-            <div className="post__text">{post.content}</div>
-            <div className="post__utils-box">
-              <div className="post__delete">삭제</div>
-              <div className="post__edit">수정</div>
-            </div>
-          </Link>
-        </div>
-      )):"게시글이 없습니다."}
+      {posts.length > 0 ? (
+        posts.map((post, index) => (
+          <div key={index} className="post__box">
+            <Link to={`/csboard/${post.id}`}>
+              <div className="post__profile-box">
+                <div className="post__profile" />
+                <div className="post__user-name">{post.email}</div>
+                <div className="post__date">{post.createdAt}</div>
+              </div>
+              <div className="post__title">{post.title}</div>
+              <div className="post__text">{post.content}</div>
+              <div className="post__utils-box">
+                <div className="post__delete">삭제</div>
+                <div className="post__edit">수정</div>
+              </div>
+            </Link>
+          </div>
+        ))
+      ) : (
+        <div className="post__none">게시글이 없습니다.</div>
+      )}
     </div>
   );
 }

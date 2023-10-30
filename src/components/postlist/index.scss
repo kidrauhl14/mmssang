@@ -83,4 +83,13 @@
             color: black;
         }
     }
+
+    .post__none {
+        padding: 24px;
+        text-align: center;
+        color: gray;
+        border: 1px solid $gray;
+        border-radius: 20px;
+        box-shadow: 5px 5px 10px;
+    }
 }
