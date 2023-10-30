@@ -1,11 +1,14 @@
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "../../firebaseApp";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 import './index.scss';
+import AuthContext from "../../context/AuthContext";
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
+  // context를 가져와서, 현재 유저의 email과 같은지 비교
+  const {user} = useContext(AuthContext);
 
   const getPosts = async () => {
     const datas = await getDocs(collection(db, "posts"));
@@ -42,10 +45,12 @@ export default function PostList() {
               </div>
               <div className="post__title">{post.title}</div>
               <div className="post__text">{post.content}</div>
-              <div className="post__utils-box">
-                <div className="post__delete">삭제</div>
-                <div className="post__edit">수정</div>
-              </div>
+              {post.email === user.email && (
+                <div className="post__utils-box">
+                  <div className="post__delete">삭제</div>
+                  <div className="post__edit">수정</div>
+                </div>
+              )}
             </Link>
           </div>
         ))
