@@ -22,7 +22,7 @@ export default function CsBoardWrite() {
       await addDoc(collection(db, "posts"), {
         title: title,
         content: content,
-        createAt: new Date()?.toLocaleDateString(),
+        createdAt: new Date()?.toLocaleDateString(),
         email: user.email,
       });
 

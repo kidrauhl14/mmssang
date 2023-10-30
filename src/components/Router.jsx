@@ -47,10 +47,11 @@ export default function Router({user}) {
             <Route path="/:category" element={<Category />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/csboard" element={<CsBoard />} />
-            <Route path="/csboard/:id" element={<CsBoardDetail />} />
+            <Route path="/csboard/detail" element={<CsBoardDetail />} />
             <Route path="*" element={<LoginPage />} />
-
-            {/* <Route path="/csboard/new" element={<CsBoardWrite />} /> */}
+            
+            
+            <Route path="/csboard/new" element={<CsBoardWrite />} />
           </>
         )}
       </Routes>
