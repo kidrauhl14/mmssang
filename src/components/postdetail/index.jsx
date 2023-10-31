@@ -1,7 +1,8 @@
 import {useState, useEffect} from "react";
-import {Link, useParams} from "react-router-dom";
-import {doc, getDoc} from "firebase/firestore";
+import {Link, useParams, useNavigate} from "react-router-dom";
+import {deleteDoc, doc, getDoc} from "firebase/firestore";
 import { db } from "../../firebaseApp";
+import {toast} from "react-toastify";
 import './index.scss';
 
 
@@ -11,6 +12,8 @@ export default function PostDetail() {
   const params = useParams();
   console.log(params);
   console.log(params.id);
+
+  const navigate = useNavigate();
 
   const getPost = async (id) => {
     if(id) {
@@ -22,7 +25,15 @@ export default function PostDetail() {
     }
   };
 
-  console.log(post);
+ const handleDelete = async () => {
+  const confirm = window.confirm("진짜 삭제해요?");
+  if(confirm && post && post.id){
+    await deleteDoc(doc(db, "posts", post.id));
+    toast.success("삭제 성공!");
+    console.log("yes");
+    navigate("/csboard");
+  }
+ }
 
   useEffect(()=>{
     if(params.id) getPost(params.id);
@@ -39,7 +50,7 @@ export default function PostDetail() {
             <div className="detail__date">{post.createdAt}</div>
           </div>
           <div className="detail__utils-box">
-            <div className="detail__delete">삭제</div>
+            <div className="detail__delete" onClick={handleDelete}>삭제</div>
             <div className="detail__edit">수정</div>
           </div>
           <div className="detail__text">
