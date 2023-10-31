@@ -1,5 +1,20 @@
 @import '../../index.scss';
 
+@mixin post__profile {
+            width: 36px;
+            height: 36px;
+            background: $gray;
+            border-radius: 50%;
+        }
+
+@mixin utils-box {
+        display: flex;
+        gap: 8px;
+        flex-direction: row-reverse;
+        font-size: 14px;
+        color: gray;
+    }
+
 .post__list {
     min-height: 90vh;
     padding: 20px;
@@ -47,10 +62,7 @@
         align-items: center;
 
         .post__profile {
-            width: 36px;
-            height: 36px;
-            background: $gray;
-            border-radius: 50%;
+            @include post__profile;
         }
 
         .post__date, .post__user-name {
@@ -69,12 +81,7 @@
     }
 
     .post__utils-box {
-        display: flex;
-        gap: 8px;
-        flex-direction: row-reverse;
-        font-size: 14px;
-        color: gray;
-
+        @include utils-box;
         .post__delete:hover, .post__delete:focus {
             color: black;
         }

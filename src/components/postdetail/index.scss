@@ -1,11 +1,62 @@
 @import '../../index.scss';
+@import '../postlist/index.scss';
 
-.post__detail {
-    background-color: $soft-gray;
+@mixin detail {
+    min-height: 90vh;
+    padding: 20px;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 24px;
+}
 
-    .post__box {
-        background-color: aquamarine;
+
+.detail__box {
+    
+    @include detail;
+    
+    .detail__title {
+        margin-top: 2rem;
+        font-size: 36px;
+        line-height: 40px;
+        font-weight: 700;
     }
 
-    
+    .detail__profile-box {
+        margin-top: 1rem;
+        display: flex;
+        gap: 8px;
+        font-size: 14px;
+        align-items: center;
+        
+        .detail__profile {
+            @include post__profile;
+        }
+
+        .detail__user-name, .detail__date {
+            color: gray;
+        }
+
+    }
+
+    .detail__utils-box {
+        @include utils-box;
+
+        .detail__delete:hover, .detail__delete:focus {
+            color: black;
+        }
+
+        .detail__edit:hover, .detail__edit:focus {
+            color: black;
+        }
+    }
+
+    .detail__text {
+        background-color: pink;
+        margin-top: 1.5rem;
+        line-height: 2;
+        color: black;
+        font-size: 16px;
+    }
 }
