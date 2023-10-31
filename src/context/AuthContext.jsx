@@ -4,6 +4,7 @@ import {app} from "../firebaseApp";
 
 const AuthContext = createContext({
     user: null,
+    setUser: () => {},
 });
 
 export const AuthContextProvider = ({children}) => {
@@ -14,14 +15,17 @@ export const AuthContextProvider = ({children}) => {
         onAuthStateChanged(auth, (user) => {
             if(user){
                 setCurrentUser(user);
+                
             } else {
-                setCurrentUser(user);
+                setCurrentUser(null);
             }
+            console.log(user);
         });
     }, [auth]);
 
+
     return (
-        <AuthContext.Provider value={{user: currentUser}}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{user: currentUser, setUser: setCurrentUser}}>{children}</AuthContext.Provider>
     );
 }
 

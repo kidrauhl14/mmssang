@@ -51,7 +51,7 @@ export default function Router({user}) {
             <Route path="*" element={<LoginPage />} />
             
             
-            <Route path="/csboard/new" element={<CsBoardWrite />} />
+            <Route path="/csboard/new" element={<Navigate to="/login" />} />
           </>
         )}
       </Routes>

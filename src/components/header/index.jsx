@@ -12,26 +12,27 @@ import '../header/index.scss'
 import DarkImg from "../../assets/dark.png"
 import { toast } from 'react-toastify';
 
-  const onSignout = async () => {
-    try {
-      const auth = getAuth(app);
-      await signOut(auth);
-      toast.success("로그아웃 성공!");
-    } catch (error) {
-      console.log(error);
-      toast.error(error.code);
-    }
-  };
-
 export default function Header() {
 
-  const {user} = useContext(AuthContext);
+  const {user, setUser} = useContext(AuthContext);
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // const handleDark = () => {
 
   // };
+
+    const onSignout = async () => {
+      try {
+        const auth = getAuth();
+        await signOut(auth);
+        toast.success("로그아웃 성공!");
+        setUser(null);
+      } catch (error) {
+        console.log(error);
+        toast.error(error.code);
+      }
+    };
 
   return (
     <header className="header">

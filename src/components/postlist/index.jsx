@@ -1,9 +1,10 @@
-import {collection, getDocs} from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import {db} from "../../firebaseApp";
 import {useContext, useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 import './index.scss';
 import AuthContext from "../../context/AuthContext";
+import {toast} from "react-toastify";
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
@@ -20,7 +21,14 @@ export default function PostList() {
     });
   };
 
-  console.log(posts);
+  const handleDelete = async (id) => {
+    const confirm = window.confirm("게시글을 진짜로 삭제하시겠습니까?");
+    if(confirm && id) {
+      await deleteDoc(doc(db,"posts", id));
+
+      toast.success("삭제 성공!");
+    }
+  }
 
   useEffect(()=>{
     getPosts();  
@@ -45,13 +53,15 @@ export default function PostList() {
               </div>
               <div className="post__title">{post.title}</div>
               <div className="post__text">{post.content}</div>
-              {user && (post.email === user.email) && (
-                <div className="post__utils-box">
-                  <div className="post__delete">삭제</div>
-                  <div className="post__edit">수정</div>
-                </div>
-              )}
             </Link>
+            {user && post.email === user.email && (
+              <div className="post__utils-box">
+                <div className="post__delete" onClick={handleDelete}>
+                  삭제
+                </div>
+                <div className="post__edit">수정</div>
+              </div>
+            )}
           </div>
         ))
       ) : (
