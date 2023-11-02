@@ -3,6 +3,7 @@
 .header {
     display: flex;
     width: 100%;
+    height: 3rem;
     background-color: $soft-gray;
     color: black;
     padding: 10px;
@@ -26,36 +27,52 @@
     }
 
     h1 {
-        font-size: 40px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 1rem;
     }
     
     .categories {
-        background-color: yellowgreen;
         display: flex; 
-        flex: 0.7;
+        justify-content: space-between;
+        width: 35%;
+        height: 3rem;
 
-        @media (min-width: 768px) {
-            display: flex;
-            flex: 0.7;
-        }
+        // @media (min-width: 768px) {
+        //     display: flex;
+        //     flex: 0.7;
+        // }
 
-        margin: 1.8rem;
-        padding-top: 1.2rem;
+        margin-left: 1.8rem;
+        margin-right: 2rem;
 
         .category {
-            font-size: 1.2rem;
+            // font-size: 1.2rem;
             margin-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 6rem;
+            height: 3rem;
+            padding-top: 0;
+            
+            a {
+                margin-top: 0.9rem;
+                font-size: 13pt;
+                font-weight: 800;
+            }
         }
 
     }
 
     .icons{
-        background-color: pink;
+        // background-color: pink;
         display: flex;
         align-items: center;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        margin: 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-left: auto;
+        margin-right: 2rem;
 
         .dropdown{
             background-color: $soft-gray;
@@ -72,12 +89,19 @@
                 transition: all;
             }
         }
+        .profile__email{
+            margin-left: 1rem;
+            margin-right:1rem;
+        }
 
         .signout{
             color: gray;
             font-size: 14px;
             cursor: pointer;
             text-decoration: underline;
+            text-align: right;
+            margin-right: 1px;
+
         }
 
         .signout:hover, .signout:focus{

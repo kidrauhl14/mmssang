@@ -24,15 +24,24 @@ export default function HomePage() {
           <section key={category} className="category">
             <h1 className="category__title link">{category}</h1>
             <article>
-              {products.filter((product) => category === "clothing" ? 
-                product.category.includes("men's clothing" ) || product.category.includes("women's clothing") 
-                : product.category === category)
+              {products
+                .filter((product) =>
+                  category === "clothing"
+                    ? product.category.includes("men's clothing") ||
+                      product.category.includes("women's clothing")
+                    : product.category === category
+                )
                 .map((product) => (
                   <div key={product.id} className="category__product">
                     <img src={product.image} alt={product.title} />
-                    <div className='product__title'>{product.title}</div>
-                    <div className='product__price'>{"$"}{product.price}</div>
-                    <p>{product.description}</p>
+                    <div className="wrapper">
+                      <div className="product__title">{product.title}</div>
+                      <div className="product__price">
+                        {"$"}
+                        {product.price}
+                      </div>
+                      {/* <p>{product.description}</p> */}
+                    </div>
                   </div>
                 ))}
             </article>

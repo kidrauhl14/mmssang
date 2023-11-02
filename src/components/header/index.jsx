@@ -40,15 +40,26 @@ export default function Header() {
         <h1>mmssang</h1>
       </Link>
       <div className="categories">
-        <a href="" className="category link">
-          패션
-        </a>
-        <a href="" className="category link">
-          액세서리
-        </a>
-        <a href="" className="category link">
-          디지털
-        </a>
+        <div className="category">
+          <a href="" className="link">
+            패션
+          </a>
+        </div>
+        <div className="category">
+          <a href="" className="link">
+            액세서리
+          </a>
+        </div>
+        <div className="category">
+          <a href="" className="link">
+            디지털
+          </a>
+        </div>
+        <div className="category">
+          <a href="/csboard" className=" link">
+            고객센터
+          </a>
+        </div>
       </div>
       <div className="icons">
         {/* <button type="button" className="dark" onClick={handleDark}>
@@ -67,9 +78,7 @@ export default function Header() {
         </Link>
         {user ? (
           <>
-            <div className="profile__email">
-              {user.email}님, 안녕하세요!
-            </div>
+            <div className="profile__email">{user.email}님, 안녕하세요!</div>
             <div className="signout" onClick={onSignout}>
               로그아웃하기
             </div>
