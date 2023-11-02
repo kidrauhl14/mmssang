@@ -16,6 +16,7 @@ import CsBoardWrite from "../pages/csboard_write";
 export default function Router({user}) {
 
   const isAuthenticated = !!user; //사용자가 있는 경우에만 인증된 것으로 간주
+  console.log(isAuthenticated);
 
   return (
     <>
@@ -49,7 +50,6 @@ export default function Router({user}) {
             <Route path="/csboard" element={<CsBoard />} />
             <Route path="/csboard/:id" element={<CsBoardDetail />} />
             <Route path="*" element={<LoginPage />} />
-            
             
             <Route path="/csboard/new" element={<Navigate to="/login" />} />
           </>

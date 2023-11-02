@@ -38,6 +38,7 @@ export default function PostList() {
     <div className="post__list">
       <div className="post__title-box">
         <div className="post__category">고객센터 게시판</div>
+        {/* user에 값이 있으면, csboard/new로 가게하고, 아니면 로그인으로 가게한다 */}
         <Link to="/csboard/new">
           <div className="post__category-write">글쓰기</div>
         </Link>

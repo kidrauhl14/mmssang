@@ -1,12 +1,14 @@
 import React from 'react'
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
 import {app} from "../../firebaseApp";
 import { getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import './index.scss'
 
 export default function LoginForm() {
+
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -18,8 +20,10 @@ export default function LoginForm() {
     try {
       const auth = getAuth(app);
       await signInWithEmailAndPassword(auth,email,password);
-
+      
+      navigate("/");
       toast.success("로그인 성공!")
+
     } catch(error){
       toast.error("로그인 실패!");
       toast.error(error.code);

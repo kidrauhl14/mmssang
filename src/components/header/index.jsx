@@ -26,7 +26,7 @@ export default function Header() {
       try {
         const auth = getAuth();
         await signOut(auth);
-        toast.success("로그아웃 성공!");
+        // toast.success("로그아웃 성공!");
         setUser(null);
       } catch (error) {
         console.log(error);
