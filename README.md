@@ -1,5 +1,8 @@
 ## 배포 링크
 
+## 기획
+https://www.notion.so/Pre-c84ecf3530ad4a92b8b2f1c39eed1715?pvs=4
+
 ## 프로젝트 구조
 ```bash
 
@@ -57,3 +60,5 @@
 ## 기능 시연 GIF
 
 ## 프로젝트 설치 및 실행방법
+
+
