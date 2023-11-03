@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { EmblaCarousel } from '../../components/carousel'
-import { fetchProducts } from '../../api/productAPI';
+import { fetchAllProducts } from '../../api/productAPI';
 import "./index.scss";
 
 export default function HomePage() {
@@ -9,7 +9,7 @@ export default function HomePage() {
   const categories = ["clothing", "jewelery", "electronics"];
 
   useEffect(() => {
-    fetchProducts()
+    fetchAllProducts()
       .then((data) => setProducts(data))
       .catch((error) =>
         console.error("products를 불러오는 중에 에러 발생", error)

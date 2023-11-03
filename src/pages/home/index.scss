@@ -16,6 +16,8 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 2.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
 
         .category__product {
             background-color: aliceblue;     
