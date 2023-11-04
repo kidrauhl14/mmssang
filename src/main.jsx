@@ -7,13 +7,19 @@ import './index.scss'
 import {BrowserRouter as Router} from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 
+//redux 관련 import
+import {Provider} from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
+import store, {persistor} from "./features/store.jsx";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthContextProvider>
-    {/* <React.StrictMode>
-      
-    </React.StrictMode> */}
-    <Router>
-      <App />
-    </Router>
-  </AuthContextProvider>
+  <Provider store={store}>
+    <PersistGate loading={<div>로딩중...</div>} persistor={persistor}>
+      <AuthContextProvider>
+        <Router>
+          <App />
+        </Router>
+      </AuthContextProvider>
+    </PersistGate>
+  </Provider>
 );

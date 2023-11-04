@@ -1,3 +1,6 @@
+// HomePage 컴포넌트는 fetchAllProducts 함수를 호출하여 서버에서 상품 데이터를 불러옵니다. 
+// 그리고 이 데이터를 setAllProducts 액션을 발생시켜 Redux 스토어에 저장합니다. 
+//이렇게 저장된 상품 데이터는 이후에 상품 목록을 렌더링하는 데 사용됩니다.
 import React, {useEffect, useState} from 'react';
 import { EmblaCarousel } from '../../components/carousel'
 import { fetchAllProducts } from '../../api/productAPI';

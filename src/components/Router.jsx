@@ -6,7 +6,7 @@ import LoginPage from "../pages/login";
 import SignupPage from "../pages/signup";
 import MyPage from "../pages/mypage";
 import Category from "../pages/category";
-import Product from "../pages/product";
+import ProductDetail from "../pages/product_detail/index";
 import Cart from "../pages/cart";
 import Scrap from "../pages/scrap";
 import CsBoard from "../pages/csboard";
@@ -26,7 +26,7 @@ export default function Router({user}) {
             <Route path="/" element={<HomePage />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/category" element={<Category />} />
-            <Route path="/product/:id" element={<Product />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/scrap" element={<Scrap />} />
             <Route path="/csboard" element={<CsBoard />} />
@@ -46,7 +46,7 @@ export default function Router({user}) {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/:category" element={<Category />} />
-            <Route path="/product/:id" element={<Product />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/csboard" element={<CsBoard />} />
             <Route path="/csboard/:id" element={<CsBoardDetail />} />
             <Route path="*" element={<LoginPage />} />
