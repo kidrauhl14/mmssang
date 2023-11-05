@@ -25,7 +25,7 @@ export default function Router({user}) {
           <>
             <Route path="/" element={<HomePage />} />
             <Route path="/mypage" element={<MyPage />} />
-            <Route path="/category" element={<Category />} />
+            <Route path="/category/:category" element={<Category />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/scrap" element={<Scrap />} />
@@ -45,7 +45,7 @@ export default function Router({user}) {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/:category" element={<Category />} />
+            <Route path="/category/:category" element={<Category />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/csboard" element={<CsBoard />} />
             <Route path="/csboard/:id" element={<CsBoardDetail />} />

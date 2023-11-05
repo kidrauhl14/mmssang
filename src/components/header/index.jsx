@@ -40,22 +40,22 @@ export default function Header() {
         <h1>mmssang</h1>
       </Link>
       <div className="categories">
-        <div className="category">
-          <a href="" className="link">
+        <div className="header__category">
+          <a href="/category/clothing" className="link">
             패션
           </a>
         </div>
-        <div className="category">
-          <a href="" className="link">
+        <div className="header__category">
+          <a href="/category/jewelery" className="link">
             액세서리
           </a>
         </div>
-        <div className="category">
-          <a href="" className="link">
+        <div className="header__category">
+          <a href="/category/electronics" className="link">
             디지털
           </a>
         </div>
-        <div className="category">
+        <div className="header__category">
           <a href="/csboard" className=" link">
             고객센터
           </a>

@@ -4,6 +4,7 @@ import { fetchProductsByCategory } from "../../api/productAPI";
 import { setCategoryProducts} from '../../features/products/productSlice';
 import Product from '../../components/product/index';
 import { useParams } from "react-router-dom";
+import './index.scss';
 
 export default function Category() {
   const {category} = useParams();
@@ -12,15 +13,21 @@ export default function Category() {
 
   useEffect(() => {
     fetchProductsByCategory(category).then(products => {
+      console.log("Fetched products:", products);
       dispatch(setCategoryProducts(products));
     })
   }, [category, dispatch]);
   
+  console.log("Rendering products:", products);
+
   return (
-    <div>
+    <section className="category">
       <h1>{category}</h1>
-      {products.map(product => 
-        <Product key={product.id} product={product}/>)}
-    </div>
-  )
+      <article>
+        {products.map((product) => (
+          <Product key={product.id} product={product} />
+        ))}
+      </article>
+    </section>
+  );
 }

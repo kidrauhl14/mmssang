@@ -4,6 +4,7 @@
 import React, {useEffect, useState} from 'react';
 import { EmblaCarousel } from '../../components/carousel'
 import { fetchAllProducts } from '../../api/productAPI';
+import Product from '../../components/product';
 import "./index.scss";
 
 export default function HomePage() {
@@ -35,17 +36,7 @@ export default function HomePage() {
                     : product.category === category
                 )
                 .map((product) => (
-                  <div key={product.id} className="category__product">
-                    <img src={product.image} alt={product.title} />
-                    <div className="wrapper">
-                      <div className="product__title">{product.title}</div>
-                      <div className="product__price">
-                        {"$"}
-                        {product.price}
-                      </div>
-                      {/* <p>{product.description}</p> */}
-                    </div>
-                  </div>
+                  <Product key={product.id} product={product}/>
                 ))}
             </article>
           </section>
