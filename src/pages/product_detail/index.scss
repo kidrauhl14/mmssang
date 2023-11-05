@@ -1,0 +1,48 @@
+.detail__wrapper1{
+    background-color: aliceblue;
+    width: 70%;
+    display: flex;
+    margin-top: 5rem;
+    border-radius: 3%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        max-width: 25%;
+    }
+    
+    .detail__wrapper2 {
+        padding-top: 2rem;
+        margin-left: 2rem;
+
+        .title__wrapper {
+            width: 42rem;
+
+            h1 {
+                word-wrap: break-word; 
+            }
+        }
+
+        .product__description {
+            margin-top: 1rem;
+        }
+
+        .product__price {
+            padding-top: 1rem;
+            font-weight: 800;
+        }
+    }
+
+    .btn__wrapper {
+        width: 36%;
+        display: flex;
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: 2rem;
+        margin-top: 3rem;
+    }
+
+}

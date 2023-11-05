@@ -15,7 +15,8 @@ import CsBoardWrite from "../pages/csboard_write";
 
 export default function Router({user}) {
 
-  const isAuthenticated = !!user; //사용자가 있는 경우에만 인증된 것으로 간주
+  // const isAuthenticated = !!user; //사용자가 있는 경우에만 인증된 것으로 간주
+  const isAuthenticated =true; // 일단 항상 로그인 되어있는 것으로 간주함.(테스트용)
   console.log(isAuthenticated);
 
   return (
