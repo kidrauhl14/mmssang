@@ -12,18 +12,45 @@ import DarkImg from "../../assets/dark.png"
 import { toast } from 'react-toastify';
 import { fetchAllProducts } from '../../api/productAPI';
 
+import {
+  enable as enableDarkMode,
+  disable as disableDarkMode,
+  isEnabled as isDarkReaderEnabled,
+} from "darkreader";
+
 export default function Header() {
   const navigate = useNavigate();
+
+  const [isDarkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('isDarkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+    
+    if (isDarkMode) {
+      enableDarkMode({
+        brightness: 100,
+        contrast: 90,
+        sepia: 10,
+      });
+    } else {
+      disableDarkMode();
+    }
+  }, [isDarkMode]);
+  
+
+  const toggleDarkMode = () => {
+    setDarkMode(!isDarkMode);
+  };
 
   const {user, setUser} = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
+
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // const handleDark = () => {
-
-  // };
 
     const onSignout = async () => {
       try {
@@ -91,12 +118,19 @@ export default function Header() {
         </div>
       </div>
       <div className="icons">
-        {/* <button type="button" className="dark" onClick={handleDark}>
-          <DarkImg />
-        </button> */}
         <div className="dropdown">
-          <input type="text" placeholder="검색어 입력 후, 엔터키" className="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} onKeyDown={handleKeyDown} />
+          <input
+            type="text"
+            placeholder="검색어 입력 후, 엔터키"
+            className="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
         </div>
+        <button type="button" className="dark__btn" onClick={toggleDarkMode}>
+          <img src={DarkImg} />
+        </button>
         <Link to={`/cart`}>
           <BsCartCheck />
         </Link>

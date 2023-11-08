@@ -74,6 +74,27 @@
         margin-left: auto;
         margin-right: 2rem;
 
+        button {
+            width: 3rem;
+            height: 3rem;
+            border: none;
+            transition: background-color 0.4s ease;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        button:hover {
+            background-color: $gray;
+        }
+
+        // Link BsCartCheck {
+
+        // }
+
         .dropdown{
             background-color: $soft-gray;
             margin-right: 1.5rem;
@@ -89,6 +110,11 @@
                 transition: all;
             }
         }
+
+        .mypage {
+            text-decoration: none;
+        }
+
         .profile__email{
             margin-left: 1rem;
             margin-right:1rem;

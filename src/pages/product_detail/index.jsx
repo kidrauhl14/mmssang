@@ -21,7 +21,9 @@ export default function ProductDetail() {
   
   return (
     <div className="detail__wrapper1">
-      <img src={product.image} alt={product.title} />
+      <div className="detail__image__wrapper">
+        <img src={product.image} alt={product.title} />
+      </div>
       <div className="detail__wrapper2">
         <div className="title__wrapper">
           <h1>{product.title}</h1>
