@@ -134,11 +134,11 @@ export default function Header() {
         <Link to={`/cart`}>
           <BsCartCheck />
         </Link>
-        <Link to={`/mypage`}>
+        {/* <Link to={`/mypage`}>
           <div className="mypage">
             <CgProfile />
           </div>
-        </Link>
+        </Link> */}
         {user ? (
           <>
             <div className="profile__email">{user.email}님, 안녕하세요!</div>

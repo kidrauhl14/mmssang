@@ -22,6 +22,11 @@
   padding-left: var(--slide-spacing);
   position: relative;
 }
+
+.embla__content {
+  position: relative;
+}
+
 .embla__slide__img {
   display: block;
   height: var(--slide-height);
@@ -29,4 +34,12 @@
   object-fit: cover;
 }
 
-
+.embla__slide__text {
+  font-weight:800;
+  font-size: xx-large;
+  color: aliceblue;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
