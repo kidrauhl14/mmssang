@@ -5,7 +5,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import {app} from "../../firebaseApp";
 import { useContext } from "react";
 
-import {BsCartCheck} from 'react-icons/bs'
+import { BsFillCartCheckFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg"
 import '../header/index.scss'
 import DarkImg from "../../assets/dark.png"
@@ -131,8 +131,11 @@ export default function Header() {
         <button type="button" className="dark__btn" onClick={toggleDarkMode}>
           <img src={DarkImg} />
         </button>
+
         <Link to={`/cart`}>
-          <BsCartCheck />
+          <button style={{ fontSize: "30px", color: "purple"}}>
+            <BsFillCartCheckFill />
+          </button>
         </Link>
         {/* <Link to={`/mypage`}>
           <div className="mypage">
