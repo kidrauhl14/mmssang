@@ -5,15 +5,26 @@
 //여기서 리듀서(reducer)는 상태를 변경하는 함수
 
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
-import {persistReducer, persistStore} from "redux-persist";
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import productReducer from '../features/products/productSlice';
 import cartReducer from '../features/cart/cartSlice';
 
 const persistConfig = {
     key: 'root',
+    // localStorage에 저장
     storage,
-    whitelist: ['products', 'cart'],  // products와 cart 상태를 저장
+    // products리듀서, auth리듀서를 localStorage에 저장장
+    whitelist: ['products', 'cart'],  // (products와 cart 상태를 저장)
 };
 
 const rootReducer = combineReducers({
@@ -23,9 +34,14 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-
 const store = configureStore({
-    reducer: persistedReducer,
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export default store;

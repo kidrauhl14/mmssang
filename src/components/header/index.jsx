@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import AuthContext from '../../context/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import {app} from "../../firebaseApp";
+
 import { useContext } from "react";
 
 import { BsFillCartCheckFill } from "react-icons/bs";
