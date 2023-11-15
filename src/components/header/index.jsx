@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import AuthContext from '../../context/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
-import {app} from "../../firebaseApp";
 // import {getStorage, ref, deleteObject} from "firebase/storage";
 import { useContext } from "react";
 
@@ -54,25 +53,6 @@ export default function Header() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   console.log(user);
 
-  // firebaseLocalStorage 데이터베이스 삭제 함수
-  const clearFirebaseLocalStorage = () => {
-    try {
-      if (
-        // Firebase SDK의 존재와 초기화 여부를 확인
-        // Firebase SDK가 정의되어 있고, 인증(Authentication) 모듈이 함수로 초기화되었을 때를 의미
-        typeof app !== "undefined" &&
-        typeof app.auth === "function"
-      ) {
-        const firebaseApp = app.app();
-        const authKey = `firebase:authUser:${firebaseApp.options.apiKey}:[DEFAULT]`;
-        localStorage.removeItem(authKey);
-      }
-    } catch (error) {
-      console.error("Error clearing firebaseLocalStorage:", error);
-    }
-  };
-
-
   const onSignout = async () => {
     try {
       const auth = getAuth();
@@ -80,8 +60,6 @@ export default function Header() {
       console.log("Before sign out"); 
       await signOut(auth);
       console.log("After sign out"); 
-      clearFirebaseLocalStorage();
-      console.log("After clear firebase local storage"); 
       toast.success("로그아웃 성공!");
       setUser(null);
     } catch (error) {
