@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import AuthContext from '../../context/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import {app} from "../../firebaseApp";
-
+// import {getStorage, ref, deleteObject} from "firebase/storage";
 import { useContext } from "react";
 
 import { BsFillCartCheckFill } from "react-icons/bs";
@@ -20,6 +20,9 @@ import {
 } from "darkreader";
 
 export default function Header() {
+
+  // const storage = getStorage();
+
   const navigate = useNavigate();
 
   const [isDarkMode, setDarkMode] = useState(() => {
@@ -51,11 +54,12 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  console.log(user);
 
     const onSignout = async () => {
       try {
         const auth = getAuth();
+        user.delete();
         await signOut(auth);
         // toast.success("로그아웃 성공!");
         setUser(null);
