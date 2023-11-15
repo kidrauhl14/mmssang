@@ -20,19 +20,18 @@ import {
 } from "darkreader";
 
 export default function Header() {
-
   // const storage = getStorage();
 
   const navigate = useNavigate();
 
   const [isDarkMode, setDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem('isDarkMode');
+    const savedMode = localStorage.getItem("isDarkMode");
     return savedMode ? JSON.parse(savedMode) : false;
   });
 
   useEffect(() => {
-    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
-    
+    localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
+
     if (isDarkMode) {
       enableDarkMode({
         brightness: 100,
@@ -43,57 +42,79 @@ export default function Header() {
       disableDarkMode();
     }
   }, [isDarkMode]);
-  
 
   const toggleDarkMode = () => {
     setDarkMode(!isDarkMode);
   };
 
-  const {user, setUser} = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   console.log(user);
 
-    const onSignout = async () => {
-      try {
-        const auth = getAuth();
-        user.delete();
-        await signOut(auth);
-        // toast.success("로그아웃 성공!");
-        setUser(null);
-      } catch (error) {
-        console.log(error);
-        toast.error(error.code);
+  // firebaseLocalStorage 데이터베이스 삭제 함수
+  const clearFirebaseLocalStorage = () => {
+    try {
+      if (
+        // Firebase SDK의 존재와 초기화 여부를 확인
+        // Firebase SDK가 정의되어 있고, 인증(Authentication) 모듈이 함수로 초기화되었을 때를 의미
+        typeof app !== "undefined" &&
+        typeof app.auth === "function"
+      ) {
+        const firebaseApp = app.app();
+        const authKey = `firebase:authUser:${firebaseApp.options.apiKey}:[DEFAULT]`;
+        localStorage.removeItem(authKey);
       }
+    } catch (error) {
+      console.error("Error clearing firebaseLocalStorage:", error);
+    }
+  };
+
+
+  const onSignout = async () => {
+    try {
+      const auth = getAuth();
+      // user.delete(); // 이렇게해버리면 해당 계정 자체가 삭제됨!
+      console.log("Before sign out"); 
+      await signOut(auth);
+      console.log("After sign out"); 
+      clearFirebaseLocalStorage();
+      console.log("After clear firebase local storage"); 
+      toast.success("로그아웃 성공!");
+      setUser(null);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.code);
+    }
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const fetchedProducts = await fetchAllProducts();
+      setProducts(fetchedProducts);
     };
+    fetchProducts();
+  }, []);
 
-    useEffect (() => {
-      const fetchProducts = async() => {
-        const fetchedProducts = await fetchAllProducts();
-        setProducts(fetchedProducts);
-      };
-      fetchProducts();
-    }, []);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      const product = products.find(
+        (data) =>
+          data.title.toLowerCase().replace(/\s/g, "") ===
+          searchTerm.toLowerCase().replace(/\s/g, "")
+      );
 
-    const handleKeyDown = (e) => {
-      if(e.key === 'Enter'){
-        const product = products.find(
-          (data) =>
-            data.title.toLowerCase().replace(/\s/g, "") ===
-            searchTerm.toLowerCase().replace(/\s/g, "")
-        );
-
-        // product가 존재하고, searchTerm이 비어있지 않은 경우에만 이동한다.
-        // trim 메서드: 문자열의 양 끝에 있는 공백(스페이스, 탭, 개행 문자 등)을 제거
-        // 그러므로, 검색어가 공백만으로 이루어진 경우(빈 경우)에는, navigate가 불가하게 된다.
-        if (product && searchTerm.trim !== "") {
-          navigate(`/product/${product.id}`);
-          setSearchTerm("");
-        }
+      // product가 존재하고, searchTerm이 비어있지 않은 경우에만 이동한다.
+      // trim 메서드: 문자열의 양 끝에 있는 공백(스페이스, 탭, 개행 문자 등)을 제거
+      // 그러므로, 검색어가 공백만으로 이루어진 경우(빈 경우)에는, navigate가 불가하게 된다.
+      if (product && searchTerm.trim !== "") {
+        navigate(`/product/${product.id}`);
+        setSearchTerm("");
       }
-    };
+    }
+  };
 
   return (
     <header className="header">
@@ -138,7 +159,7 @@ export default function Header() {
         </button>
 
         <Link to={`/cart`}>
-          <button style={{ fontSize: "30px", color: "purple"}}>
+          <button style={{ fontSize: "30px", color: "purple" }}>
             <BsFillCartCheckFill />
           </button>
         </Link>
