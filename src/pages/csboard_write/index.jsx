@@ -1,20 +1,19 @@
 // 고객센터게시판 글쓰기 페이지
-import {useContext, useState} from "react";
-import {collection, addDoc} from "firebase/firestore";
-import { db } from '../../firebaseApp';
-import AuthContext from "../../context/AuthContext";
+import { useContext, useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../firebase-config";
+// import AuthContext from "../../AuthContext";
 import { useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 import "./index.scss";
 
 export default function CsBoardWrite() {
-
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const onSubmit = async (e)=>{
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -28,7 +27,7 @@ export default function CsBoardWrite() {
 
       toast.success("게시글을 생성했습니당~");
       navigate("/");
-    } catch(e){
+    } catch (e) {
       console.log(e);
       toast.error(e.code);
     }
@@ -39,28 +38,41 @@ export default function CsBoardWrite() {
       target: { name, value },
     } = e;
 
-    if(name === "title"){
+    if (name === "title") {
       setTitle(value);
     }
-    if(name === "content"){
+    if (name === "content") {
       setContent(value);
     }
   };
 
   return (
     <>
-      <h2 className='ask'> 문의하기</h2>
+      <h2 className="ask"> 문의하기</h2>
       <form onSubmit={onSubmit} className="form">
         <div className="form__block">
           <label htmlFor="title">제목</label>
-          <input type="text" name="title" id="title" required onChange={onChange} value={title}/>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            required
+            onChange={onChange}
+            value={title}
+          />
         </div>
         <div className="form__block">
           <label htmlFor="content">내용</label>
-          <textarea name="content" id="content" required onChange={onChange} value={content}/>
+          <textarea
+            name="content"
+            id="content"
+            required
+            onChange={onChange}
+            value={content}
+          />
         </div>
         <div className="form__block">
-          <input type="submit" value="등록하기" className='form__btn--submit' />
+          <input type="submit" value="등록하기" className="form__btn--submit" />
         </div>
       </form>
     </>
