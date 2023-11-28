@@ -1,11 +1,15 @@
 ## 배포 링크
+
 https://mmssang-kidrauhl14.vercel.app/
 
 ## 기획
+
 https://www.notion.so/Pre-c84ecf3530ad4a92b8b2f1c39eed1715?pvs=4
 
 ## 프로젝트 구조
+
 components 폴더에는 React 컴포넌트를, <br>api 폴더에는 API 호출과 관련된 함수를, <br>features 폴더에는 Redux의 액션과 리듀서를 관리합니다.
+
 ```bash
 📦src
  ┣ 📂api
@@ -86,13 +90,12 @@ components 폴더에는 React 컴포넌트를, <br>api 폴더에는 API 호출�
  ┃ ┃ ┣ 📜index.jsx
  ┃ ┃ ┗ 📜index.scss
  ┣ 📜App.jsx
- ┣ 📜firebaseApp.js
  ┣ 📜index.scss
  ┗ 📜main.jsx
 ```
 
+┣ 📜firebase-config.js
+
 ## 기능 시연 GIF
 
 ## 프로젝트 설치 및 실행방법
-
-

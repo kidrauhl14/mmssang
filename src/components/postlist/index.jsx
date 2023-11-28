@@ -1,38 +1,38 @@
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import {db} from "../../firebaseApp";
-import {useContext, useEffect, useState} from "react";
-import { Link } from 'react-router-dom';
-import './index.scss';
-import AuthContext from "../../context/AuthContext";
-import {toast} from "react-toastify";
+import { db } from "../../../firebase-config";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./index.scss";
+// import AuthContext from "../../AuthContext";
+import { toast } from "react-toastify";
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
   // context를 가져와서, 현재 유저의 email과 같은지 비교
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const getPosts = async () => {
     const datas = await getDocs(collection(db, "posts"));
     console.log(datas);
 
     datas.forEach((doc) => {
-      const dataObj = {...doc.data(), id:doc.id};
-      setPosts((prev) => [...prev, dataObj])
+      const dataObj = { ...doc.data(), id: doc.id };
+      setPosts((prev) => [...prev, dataObj]);
     });
   };
 
   const handleDelete = async (id) => {
     const confirm = window.confirm("게시글을 진짜로 삭제하시겠습니까?");
-    if(confirm && id) {
-      await deleteDoc(doc(db,"posts", id));
+    if (confirm && id) {
+      await deleteDoc(doc(db, "posts", id));
 
       toast.success("삭제 성공!");
     }
-  }
+  };
 
-  useEffect(()=>{
-    getPosts();  
-  },[]);
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <div className="post__list">

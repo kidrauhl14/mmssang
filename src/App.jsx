@@ -1,57 +1,41 @@
-import {useEffect, useState} from "react";
-import { app } from "./firebaseApp";
-import { getAuth} from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "./index.scss";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Layout from "./components/Layout";
-import Router from "./components/Router";
+import Header from "./components/Header";
+
+import HomePage from "./pages/home";
+import LoginPage from "./pages/login";
+import SignupPage from "./pages/signup";
+import MyPage from "./pages/mypage";
+import Category from "./pages/category";
+import ProductDetail from "./pages/product_detail/index";
+import Cart from "./pages/cart";
+import Scrap from "./pages/scrap";
+import CsBoard from "./pages/csboard";
+import CsBoardDetail from "./pages/csboard_detail";
+import CsBoardWrite from "./pages/csboard_write";
 
 function App() {
-  const auth = getAuth(app);
-  console.log(auth);
-
-  // auth를 체크하기 전에 (initialize 전)에는 loader를 띄워주는 용도
-  const [init, setInit] = useState(false);
-
-  // firebase Auth가 인증되었으면, authenticated로 변경
-  // currentUser 초기값: auth에 currentUser값이 있으면 true/ 없으면 false
-  const [user, setUser] = useState(auth.currentUser);
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!auth.currentUser
-  );
- 
-
-
-  // firebase Auth가 인증되었으면, user로 설정
-  // currentUser 초기값: auth에 currentUser값이 있으면 해당 user 객체/ 없으면 null
-  // const user = auth.currentUser;
-
-
-  useEffect(()=>{
-    setInit(true);
-  },[]);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        //currentUser가 있다면
-        setIsAuthenticated(true);
-      } else {
-        //currentUser가 없다면
-        setIsAuthenticated(false);
-      }
-      setInit(true);
-    });
-  }, [auth]);
-
   return (
     <>
-      <Layout>
-        <ToastContainer />
-        {init ? <Router user={user} isAuthenticated={isAuthenticated} /> : "loading..."}
-      </Layout>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/category/:category" element={<Category />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/scrap" element={<Scrap />} />
+          <Route path="/csboard" element={<CsBoard />} />
+          <Route path="/csboard/:id" element={<CsBoardDetail />} />
+          <Route path="/csboard/new" element={<CsBoardWrite />} />
+          {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
+
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }
